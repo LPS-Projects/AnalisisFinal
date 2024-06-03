@@ -1,0 +1,8 @@
+fastapi 
+uvicorn
+jinja2
+pydantic
+pandas
+requests
+joblib
+scikit-learn==1.2.2

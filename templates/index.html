@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App de predicciones</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Llamadas de Emergencia 123</h1>
+        <div class="form-group">
+            <label for="modelSelect">Seleccione el Modelo:</label>
+            <select class="form-control" id="modelSelect">
+                <option value="Random Forest">Random Forest</option>
+                <option value="SARIMAX">SARIMAX</option>
+            </select>
+        </div>
+
+        <br/>
+
+        <div id="rfFields" class="model-fields">
+            <div class="form-group">
+                <label for="fecha">Fecha:</label>
+                <input type="date" class="form-control" id="fecha">
+            </div>
+            <div class="form-group">
+                <label for="hora">Hora:</label>
+                <input type="number" class="form-control" id="hora">
+            </div>
+            <div class="form-group">
+                <label for="codigo_localidad">Localidad:</label>
+                <select class="form-control" id="codigo_localidad">
+                    <option value="0">Antonio Nariño</option>
+                    <option value="1">Barrios Unidos</option>
+                    <option value="2">Bosa</option>
+                    <option value="3">Chapinero</option>
+                    <option value="4">Ciudad Bolívar</option>
+                    <option value="5">Engativá</option>
+                    <option value="6">Fontibón</option>
+                    <option value="7">Kennedy</option>
+                    <option value="8">La Candelaria</option>
+                    <option value="9">Los Mártires</option>
+                    <option value="10">Puente Aranda</option>
+                    <option value="11">Rafael Uribe Uribe</option>
+                    <option value="12">San Cristóbal</option>
+                    <option value="13">Santa Fe</option>
+                    <option value="14">Suba</option>
+                    <option value="15">Sumapaz</option>
+                    <option value="16">Teusaquillo</option>
+                    <option value="17">Tunjuelito</option>
+                    <option value="18">Usaquén</option>
+                    <option value="19">Usme</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="edad">Edad:</label>
+                <input type="number" class="form-control" id="edad">
+            </div>
+            <div class="form-group">
+                <label for="genero">Género:</label>
+                <select class="form-control" id="genero">
+                    <option value="0">Masculino</option>
+                    <option value="1">Femenino</option>
+                    <option value="2">Desconocido</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tipo_incidente">Tipo de Incidente:</label>
+                <select class="form-control" id="tipo_incidente">
+                    <option value="0">Abejas</option>
+                    <option value="1">Abrir domicilio</option>
+                    <option value="2">Accidente cerebro vascular</option>
+                    <option value="3">Accidente cerebro vascular (acv)</option>
+                    <option value="4">Accidente de aviación</option>
+                    <option value="5">Accidente de tránsito con heridos/muertos</option>
+                    <option value="6">Accidente tránsito con heridos/muertos</option>
+                    <option value="7">Accidente tránsito simple</option>
+                    <option value="8">Amenaza de ruina</option>
+                    <option value="9">Animal atrapado</option>
+                    <option value="10">Animal peligroso</option>
+                    <option value="11">Atraco / hurto en proces</option>
+                    <option value="12">Caída</option>
+                    <option value="13">Caída de altura</option>
+                    <option value="14">Convulsiones</option>
+                    <option value="15">Convulsión</option>
+                    <option value="16">Daños en servicios</option>
+                    <option value="17">Delincuente capturado por civil</option>
+                    <option value="18">Desconocido</option>
+                    <option value="19">Deslizamiento</option>
+                    <option value="20">Dificultad respiratoria</option>
+                    <option value="21">Disparos</option>
+                    <option value="22">Dolor torácico</option>
+                    <option value="23">Electrocución / rescate</option>
+                    <option value="24">Elemento caído y/o en peligro de caer.</option>
+                    <option value="25">Embriaguez</option>
+                    <option value="26">Enfermo</option>
+                    <option value="27">Evento respiratorio</option>
+                    <option value="28">Explosión</option>
+                    <option value="29">Extraviados / desaparecidos</option>
+                    <option value="30">Fallecido</option>
+                    <option value="31">Fuga de gas natural o propano</option>
+                    <option value="32">Habitante de la calle</option>
+                    <option value="33">Hallazgo de explosivos</option>
+                    <option value="34">Herido con pólvora</option>
+                    <option value="35">Heridos</option>
+                    <option value="36">Heridos accidentales</option>
+                    <option value="37">Hurto efectuado</option>
+                    <option value="38">Ideas de suicidio</option>
+                    <option value="39">Incendio</option>
+                    <option value="40">Incendio con matpel</option>
+                    <option value="41">Incendio estructural</option>
+                    <option value="42">Incendio forestal</option>
+                    <option value="43">Incendio vehicular</option>
+                    <option value="44">Incidente rescate acuático</option>
+                    <option value="45">Inconsciente / paro cardiorespiratorio</option>
+                    <option value="46">Inconsciente/paro cardiorrespiratorio</option>
+                    <option value="47">Intento de suicidio</option>
+                    <option value="48">Intoxicaciones</option>
+                    <option value="49">Intoxicación</option>
+                    <option value="50">Inundación</option>
+                    <option value="51">Lesiones personales</option>
+                    <option value="52">Maltrato</option>
+                    <option value="53">Manifestación / motín</option>
+                    <option value="54">Matpel (materiales peligrosos)</option>
+                    <option value="55">Menor o persona abandonada</option>
+                    <option value="56">Muerte natural</option>
+                    <option value="57">Muerto</option>
+                    <option value="58">Narcoticos</option>
+                    <option value="59">Patología gineco - obstétrica</option>
+                    <option value="60">Patología ginecobstétrica</option>
+                    <option value="61">Persona o vehículo sospechoso</option>
+                    <option value="62">Persona pidiendo auxilio</option>
+                    <option value="63">Persona tendida en la vía</option>
+                    <option value="64">Prevención</option>
+                    <option value="65">Psicologia</option>
+                    <option value="66">Quemaduras</option>
+                    <option value="67">Rapto / secuestro</option>
+                    <option value="68">Rescates</option>
+                    <option value="69">Rescates montaña</option>
+                    <option value="70">Riña</option>
+                    <option value="71">S/d</option>
+                    <option value="72">Sangrado vaginal</option>
+                    <option value="73">Solicitud apoyo / desacato</option>
+                    <option value="74">Síntomas gastrointestinales</option>
+                    <option value="75">Trastorno mental</option>
+                    <option value="76">Vehiculo hurtado</option>
+                    <option value="77">Vehículo abandonado / mal estacionado</option>
+                    <option value="78">Vehículo recuperado</option>
+                    <option value="79">Venta o consumo alcohol u otro en menor</option>
+                    <option value="80">Verificar situación</option>
+                    <option value="81">Violencia sexual</option>
+                </select>
+            </div>            
+        </div>
+
+        <div id="sarimaxFields" class="model-fields" style="display:none;">
+            <div class="form-group">
+                <label for="fecha_inicio">Fecha Inicio:</label>
+                <input type="date" class="form-control" id="fecha_inicio">
+            </div>
+            <div class="form-group">
+                <label for="fecha_fin">Fecha Fin:</label>
+                <input type="date" class="form-control" id="fecha_fin">
+            </div>
+        </div>
+
+        <button id="predictButton" class="btn btn-primary">Predecir</button>
+
+        <h3 class="mt-5">Resultados de la Predicción:</h3>
+        <table id="resultTable" class="table table-bordered" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Predicción</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div id="rfResult" style="display: none;">
+            <p>Prioridad: <span id="rfPrediction"></span></p>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#modelSelect').change(function() {
+                var selectedModel = $(this).val();
+                // Limpiar los resultados al cambiar el modelo
+                console.log('Model changed to:', selectedModel);
+                $('#resultTable tbody').empty();
+                $('#resultTable').hide();
+                $('#rfResult').hide();
+                $('#rfPrediction').text('');
+
+                if (selectedModel === 'Random Forest') {
+                    $('#rfFields').show();
+                    $('#sarimaxFields').hide();
+                } else {
+                    $('#rfFields').hide();
+                    $('#sarimaxFields').show();
+                }
+            });
+
+            $('#predictButton').click(function() {
+                var selectedModel = $('#modelSelect').val();
+                var url = selectedModel === 'Random Forest' ? '/predict_rf' : '/predict_sarimax';
+                var data = {};
+
+                if (selectedModel === 'Random Forest') {
+                    data = {
+                        fecha: $('#fecha').val(),
+                        hora: $('#hora').val(),
+                        codigo_localidad: $('#codigo_localidad').val(),
+                        edad: $('#edad').val(),
+                        genero: $('#genero').val(),
+                        tipo_incidente: $('#tipo_incidente').val()
+                    };
+                } else {
+                    data = {
+                        fecha_inicio: $('#fecha_inicio').val(),
+                        fecha_fin: $('#fecha_fin').val()
+                    };
+                }
+
+                console.log('Sending data:', data);
+
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    success: function(response) {
+                        console.log('Response:', response);
+                        if (selectedModel === 'Random Forest') {
+                            var predictionText = convertPrediction(response.prediction);
+                            $('#rfPrediction').text(predictionText);
+                            $('#rfResult').show();
+                        } else {
+                            var tbody = $('#resultTable tbody');
+                            tbody.empty();
+                            response.prediction.forEach(function(item) {
+                                var row = `<tr><td>${item.date}</td><td>${item.prediction}</td></tr>`;
+                                tbody.append(row);
+                            });
+                            $('#resultTable').show();
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.log('Error:', xhr.responseText);
+                        $('#resultTable tbody').empty();
+                        var row = `<tr><td colspan="2">Error: ${xhr.responseText}</td></tr>`;
+                        $('#resultTable tbody').append(row);
+                        $('#resultTable').show();
+                    }
+                });
+            });
+
+            function convertPrediction(prediction) {
+                var predictionText = '';
+                switch (prediction) {
+                    case 0:
+                        predictionText = 'Alta';
+                        break;
+                    case 1:
+                        predictionText = 'Baja';
+                        break;
+                    case 2:
+                        predictionText = 'Normal';
+                        break;
+                    case 3:
+                        predictionText = 'Media';
+                        break;
+                    default:
+                        predictionText = 'Desconocido';
+                        break;
+                }
+                return predictionText;
+            }
+        });
+    </script>
+</body>
+</html>
