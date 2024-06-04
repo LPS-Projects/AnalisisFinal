@@ -4,5 +4,3 @@ jinja2
 joblib
 pandas
 pydantic
-scikit-learn
-statsmodels
