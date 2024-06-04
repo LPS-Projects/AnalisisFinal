@@ -14,10 +14,10 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Cargar el modelo Random Forest
-rf_model = joblib.load('models/rf_model.pkl')
+rf_model = joblib.load('models/rf_model.pkl.gz')
 
 # Cargar el modelo SARIMAX (anteriormente ARIMA)
-model_sarimax = joblib.load('models/sarimax_model.pkl')
+model_sarimax = joblib.load('models/sarimax_model.pkl.gz')
 
 # Configurar las plantillas
 templates = Jinja2Templates(directory="templates")
